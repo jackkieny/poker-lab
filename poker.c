@@ -191,6 +191,9 @@ int main(int argc, char const *argv[]) {
     printf("\n\n"); //Spacing
 
     printf("How would you like to score your hand?\n");
+    printf("1.  One Pair\n2.  Two Pair\n");
+    printf("3.  Three of a Kind\n4.  Four of a Kind\n");
+    printf("5.  Straight\n6.  Flush\n7.  Full House\n8.  Straight Flush\n\n");
 
 
 

@@ -82,6 +82,15 @@ card *get_hand(card *empty_hand, int size_of_hand) {
     return sort(empty_hand, size_of_hand);
 }
 
+/* Sorts and prints the current hand */
+void print_currentHand(card *current_hand, int size_of_hand){
+     sort(get_hand(current_hand, size_of_hand), size_of_hand);
+        for (int i=0; i<5; i++){
+            char *s = malloc(21);
+            printf("%s\n", display_card(&current_hand[i], s));
+        }
+}
+
 
 /* Returns 1 if two of the cards in "hand" have the same value; returns 0 otherwise.
  * "hand" must be sorted from least value to greatest value. */
@@ -168,9 +177,22 @@ int is_straight_flush(card *hand, int size_of_hand) {
 int main(int argc, char const *argv[]) {
     srand(time(NULL));
     populate_deck();
-    //int sizeOfHand = 5;
+    int sizeOfHand = 5;
     /* ADD WHATEVER CODE HERE YOU NEED */
-//    printf("Print this AAAAAAAAAAAAAAAAAAA\n");
+
+    printf("\n\t\t|~~~~~~~~~~~~~~~~~~~~|\n");
+    printf("\t\t|     WELCOME TO     |\n");
+    printf("\t\t|   P  O  K  E  R    |\n");
+    printf("\t\t|~~~~~~~~~~~~~~~~~~~~|\n\n\n");
+    printf("~~~Current Hand~~~\n");
+    card current_hand[sizeOfHand]; //creates a new blank hand
+    print_currentHand(current_hand, sizeOfHand); //sorts and prints the current hand
+
+    printf("\n\n"); //Spacing
+
+    printf("How would you like to score your hand?\n");
+
+
 
 
 //    for(int i=0; i<53; i++){

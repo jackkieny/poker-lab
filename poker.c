@@ -26,34 +26,33 @@ card deck[52];          // a "deck" of 52 cards
 void populate_deck() {
     /* ADD CODE HERE TO PLACE THE 52 STANDARD CARDS IN DECK[] */
 
-    for (int i=1; i<14; i++){
-        card *clubs = malloc(sizeof(card));//
-        clubs = create_card(i, CLUBS, club//s);
-        deck[i-1] = *clubs;//
-        create_card(i, 0, deck[i-1])
+    for(int j=0; j<4; j++){
+        for(int i=1; i<14; i++){
+            int flag;
+            switch (j){
+                case 0:
+                    flag = 0;
+                    break;
 
-        free(clubs);//
-    }
+                case 1:
+                    flag = 13;
+                    break;
 
-    for (int i=1; i<14; i++){
-        card *hearts = malloc(sizeof(card));
-        hearts = create_card(i, HEARTS, hearts);
-        deck[i+12] = *hearts;
-        free(hearts);
-    }
+                case 2:
+                    flag = 26;
+                    break;
 
-    for (int i=1; i<14; i++){
-        card *spades = malloc(sizeof(card));
-        spades = create_card(i, SPADES, spades);
-        deck[i+25] = *spades;
-        free(spades);
-    }
+                case 3:
+                    flag = 39;
+                    break;
 
-    for(int i=1; i<20; i++){
-        card *diamonds = malloc(sizeof(card));
-        diamonds = create_card(i, DIAMONDS, diamonds);
-        deck[i+38] = *diamonds;
-        free(diamonds);
+                default:
+                    printf("Something has gone wrong while creating the deck.");
+                    exit(0);
+
+            }
+            create_card(i, j, &deck[i+flag]);
+        }
     }
 }
 
@@ -169,8 +168,14 @@ int is_straight_flush(card *hand, int size_of_hand) {
 int main(int argc, char const *argv[]) {
     srand(time(NULL));
     populate_deck();
-    int sizeOfHand = 5;
+    //int sizeOfHand = 5;
     /* ADD WHATEVER CODE HERE YOU NEED */
-    printf("Print this AAAAAAAAAAAAAAAAAAA\n");
+//    printf("Print this AAAAAAAAAAAAAAAAAAA\n");
+
+
+//    for(int i=0; i<53; i++){
+//        char *s = malloc(21);
+//       printf("%s\n", display_card(&deck[i], s));
+//    }
     return 0;
 }

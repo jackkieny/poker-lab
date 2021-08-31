@@ -3,15 +3,36 @@ STUDENT: Jack Kieny
 1. WHY DOES IS_PAIR() RETURN A 1 WHEN THE HAND CONTAINS AT LEAST TWO CARDS WITH
    THE SAME VALUE? WHY DOES IT RETURN A 0 WHEN THE HAND CONTAINS NO PAIRS?
 
-
+-   The is_pair function works by using the or gate. It will loop through the array
+    until it finds two cards with the same value. When it does this, the expression
+    will evaluate to true therefore making the OR expression true which results in
+    setting the int pair = 1. If there are no pairs found then, the expression will
+    continue to evaluate to 0 and the int pair will remain at 0 as well, and the func
+    will return 0.
 
 2. WHY DOES IS_FLUSH() RETURN A 1 WHEN ALL CARDS IN THE HAND HAVE THE SAME SUIT?
    WHY DOES IT RETURN A 0 WHEN AT LEAST TWO CARDS HAVE DIFFERENT SUITS?
 
+-   The is_flush function works in the same way that is_pair does except this time we
+    are checking that all of the cards are equal in value. We do this the same way by
+    evaluating whether or not all the cards are equal to the suit of the first card.
+    Then we check to make sure that they are also equal to int flush which just makes
+    sure that that all the suit values stay the same throughout the for loop.
+
+-   Say for instance if one or more of the cards were not of the same suit, then line X
+    would evaluate to false because both flush and the expression must be equal to ONE other-
+    wise they will evaluate to 0 and return 0;
 
 
 3. WHY DOES IS_STRAIGHT() RETURN A 1 WHEN ALL CARDS IN THE HAND ARE IN SEQUENCE?
    WHY DOES IT RETURN A 0 WHEN THEY ARE NOT IN SEQUENCE?
+
+-   The is_straight func works by looping through the current hand and taking the absolute
+    value of the current card minus the previous card's value. Assuming the cards are in
+    straight order, the result will be equal to 0 otherwise it will be one or more. In this
+    case the function just return whatever the result is not. So if the hand is a straight it
+    return not 0 which is 1 and if the cards are not a straight it will return NOT 1 (or more)
+    meaning that it will return false.
 
 gcc -std=c99 -Wall -o poker poker.c card.c
 

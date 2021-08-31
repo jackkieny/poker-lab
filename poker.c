@@ -49,7 +49,6 @@ void populate_deck() {
                 default:
                     printf("Something has gone wrong while creating the deck.");
                     exit(0);
-
             }
             create_card(i, j, &deck[i+flag]);
         }
@@ -161,6 +160,9 @@ int is_flush(card *hand, int size_of_hand) {
  * "hand" must be sorted from least value to greatest value. */
 int is_full_house(card *hand, int size_of_hand) {
     /* WRITE THIS FUNCTION */
+
+
+
     return -1;
 }
 
@@ -169,7 +171,18 @@ int is_full_house(card *hand, int size_of_hand) {
  * "hand" must be sorted from least value to greatest value. */
 int is_four_of_kind(card *hand, int size_of_hand) {
     /* WRITE THIS FUNCTION */
-    return -1;
+
+    int fourKind = 0;
+    int firstCardValue = hand[0].value;
+    int secondCardValue = hand[1].value;
+    if(firstCardValue == secondCardValue && firstCardValue == hand[2].value && firstCardValue == hand[3].value){
+        fourKind = 1;
+    }
+    else if(secondCardValue == hand[2].value && secondCardValue == hand[3].value && secondCardValue == hand[4].value){
+        fourKind = 1;
+    }
+
+    return fourKind;
 }
 
 
@@ -188,6 +201,7 @@ int main(int argc, char const *argv[]) {
 
     printf("\n\t\t|~~~~~~~~~~~~~~~~~~~~|\n");
     printf("\t\t|     WELCOME TO     |\n");
+    printf("\t\t|   FIVE CARD DRAW   |\n");
     printf("\t\t|   P  O  K  E  R    |\n");
     printf("\t\t|~~~~~~~~~~~~~~~~~~~~|\n\n\n");
     printf("~~~Current Hand~~~\n");
@@ -202,51 +216,88 @@ int main(int argc, char const *argv[]) {
     printf("5.  Straight\n6.  Flush\n7.  Full House\n8.  Straight Flush\n");
     printf("0. Exit\n\n");
 
-    int selection;
-    scanf("%d", &selection); //Grabs user input for scoring
+    int selection = 1;
 
-    switch(selection){
-        case 0:
-            exit(0);
-            break;
-        case 1:
-            if(is_pair(current_hand, sizeOfHand)==1){
-                printf("Congrats! Your hand won with ONE PAIR! :)\n");
-            }else{
-                printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
-                printf("Better luck next time!\n\n");
-            }
-            break;
-        case 2:
 
-            break;
-        case 3:
+    while(selection!=0){
+        scanf("%d", &selection); //Grabs user input for scoring
+        switch(selection){
+            case 0:
+                exit(0);
+                break;
+            case 1:
+                if(is_pair(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with ONE PAIR! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 2:
+                if(is_two_pair(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with TWO PAIR! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 3:
+                if(is_three_of_kind(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with THREE OF A KIND! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 4:
+                if(is_four_of_kind(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FOUR OF A KIND! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 5:
+                if(is_straight(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with STRAIGHT! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 6:
+                if(is_flush(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FLUSH! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 7:
+                if(is_full_house(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FULL HOUSE! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
+            case 8:
+                if(is_straight_flush(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with STRAIGHT FLUSH! :)\n");
+                }else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                    printf("Better luck next time!\n\n");
+                }
+                break;
 
-            break;
-        case 4:
+            default:
+                printf("Input invalid.\nPlease try again...\n\n");
+                exit(0);
+                break;
 
-            break;
-        case 5:
-
-            break;
-        case 6:
-
-            break;
-        case 7:
-
-            break;
-        case 8:
-
-            break;
-
-        default:
-            printf("Input unrecognized or invalid.\nPlease try again...\n\n");
-            break;
+        }
+        printf("\nPlease enter your next selection\n");
     }
 
-//    for(int i=0; i<53; i++){
-//        char *s = malloc(21);
-//       printf("%s\n", display_card(&deck[i], s));
-//    }
     return 0;
 }

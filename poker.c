@@ -125,7 +125,13 @@ int is_two_pair(card *hand, int size_of_hand) {
  * "hand" must be sorted from least value to greatest value. */
 int is_three_of_kind(card *hand, int size_of_hand) {
     /* WRITE THIS FUNCTION */
-    return -1;
+
+    int threeKind = 0;
+    for(int i=0; i<size_of_hand; i++){
+       threeKind = threeKind || (hand[i].value == hand[i+1].value && hand[i+1].value == hand[i+2].value);
+    }
+
+    return threeKind;
 }
 
 
@@ -193,10 +199,50 @@ int main(int argc, char const *argv[]) {
     printf("How would you like to score your hand?\n");
     printf("1.  One Pair\n2.  Two Pair\n");
     printf("3.  Three of a Kind\n4.  Four of a Kind\n");
-    printf("5.  Straight\n6.  Flush\n7.  Full House\n8.  Straight Flush\n\n");
+    printf("5.  Straight\n6.  Flush\n7.  Full House\n8.  Straight Flush\n");
+    printf("0. Exit\n\n");
 
+    int selection;
+    scanf("%d", &selection); //Grabs user input for scoring
 
+    switch(selection){
+        case 0:
+            exit(0);
+            break;
+        case 1:
+            if(is_pair(current_hand, sizeOfHand)==1){
+                printf("Congrats! Your hand won with ONE PAIR! :)\n");
+            }else{
+                printf("Sorry, it looks like your hand wasn't good enough\nto be scored in this category :(\n");
+                printf("Better luck next time!\n\n");
+            }
+            break;
+        case 2:
 
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 6:
+
+            break;
+        case 7:
+
+            break;
+        case 8:
+
+            break;
+
+        default:
+            printf("Input unrecognized or invalid.\nPlease try again...\n\n");
+            break;
+    }
 
 //    for(int i=0; i<53; i++){
 //        char *s = malloc(21);

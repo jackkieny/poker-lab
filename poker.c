@@ -160,10 +160,17 @@ int is_flush(card *hand, int size_of_hand) {
  * "hand" must be sorted from least value to greatest value. */
 int is_full_house(card *hand, int size_of_hand) {
     /* WRITE THIS FUNCTION */
+    int fullHouse = 0;
+    int firstCardValue = hand[0].value;
+    int thirdCardValue = hand[2].value;
 
-
-
-    return -1;
+    if((firstCardValue == hand[1].value) && (thirdCardValue == hand[3].value && thirdCardValue == hand[4].value)){
+        fullHouse = 1;
+    }
+    else if((firstCardValue == hand[1].value && firstCardValue == thirdCardValue) && (hand[3].value == hand[4].value)){
+        fullHouse = 1;
+    }
+    return fullHouse;
 }
 
 
@@ -214,6 +221,7 @@ int main(int argc, char const *argv[]) {
     printf("1.  One Pair\n2.  Two Pair\n");
     printf("3.  Three of a Kind\n4.  Four of a Kind\n");
     printf("5.  Straight\n6.  Flush\n7.  Full House\n8.  Straight Flush\n");
+    printf("9. Auto Score\n");
     printf("0. Exit\n\n");
 
     int selection = 1;
@@ -225,6 +233,8 @@ int main(int argc, char const *argv[]) {
             case 0:
                 exit(0);
                 break;
+
+            /* Manual scoring for one pair */
             case 1:
                 if(is_pair(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with ONE PAIR! :)\n");
@@ -233,6 +243,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for two pair */
             case 2:
                 if(is_two_pair(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with TWO PAIR! :)\n");
@@ -241,6 +253,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for three of a kind */
             case 3:
                 if(is_three_of_kind(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with THREE OF A KIND! :)\n");
@@ -249,6 +263,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for four of a kind */
             case 4:
                 if(is_four_of_kind(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with FOUR OF A KIND! :)\n");
@@ -257,6 +273,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for straight */
             case 5:
                 if(is_straight(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with STRAIGHT! :)\n");
@@ -265,6 +283,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for flush */
             case 6:
                 if(is_flush(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with FLUSH! :)\n");
@@ -273,6 +293,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for full house */
             case 7:
                 if(is_full_house(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with FULL HOUSE! :)\n");
@@ -281,6 +303,8 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* Manual scoring for straight flush */
             case 8:
                 if(is_straight_flush(current_hand, sizeOfHand)==1){
                     printf("Congrats! Your hand won with STRAIGHT FLUSH! :)\n");
@@ -289,6 +313,46 @@ int main(int argc, char const *argv[]) {
                     printf("Better luck next time!\n\n");
                 }
                 break;
+
+            /* This checks the hand in order of highest scoring to least so that the user will score in the highest possible category */
+            case 9:
+                if(is_straight_flush(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with STRAIGHT FLUSH! :)\n");
+                    exit(0);
+                }
+                else if(is_full_house(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FULL HOUSE! :)\n");
+                    exit(0);
+                }
+                else if(is_flush(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FLUSH! :)\n");
+                    exit(0);
+                }
+                else if(is_straight(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with STRAIGHT! :)\n");
+                    exit(0);
+                }
+                else if(is_four_of_kind(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with FOUR OF A KIND! :)\n");
+                    exit(0);
+                }
+                else if(is_three_of_kind(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with THREE OF A KIND! :)\n");
+                    exit(0);
+                }
+                else if(is_two_pair(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with TWO PAIR! :)\n");
+                    exit(0);
+                }
+                else if(is_pair(current_hand, sizeOfHand)==1){
+                    printf("Congrats! Your hand won with ONE PAIR! :)\n");
+                    exit(0);
+                }
+                else{
+                    printf("Sorry, it looks like your hand wasn't good enough\nto be scored on any of the categories :(\n");
+                    printf("Better luck next time!\nThanks for playing!\n");
+                    exit(0);
+                }
 
             default:
                 printf("Input invalid.\nPlease try again...\n\n");
